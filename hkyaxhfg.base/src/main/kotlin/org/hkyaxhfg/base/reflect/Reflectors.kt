@@ -82,7 +82,7 @@ fun Reflector.invoke(methodName: String, targetClass: KClass<*>, parameterTypes:
 fun <T> Reflector.readField(fieldName: String, any: Any): T? {
     val jClass = any::class.java
     val field = jClass.getField(fieldName)
-    var accessible = field.isAccessible
+    val accessible = field.isAccessible
     if (!accessible) {
         field.isAccessible = true
     }

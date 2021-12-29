@@ -9,6 +9,7 @@ import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.FilterBuilder
 import org.springframework.beans.factory.InitializingBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Configuration
  */
 @Configuration
 @EnableConfigurationProperties(KnumProperties::class)
+@ConditionalOnBean(value = [KnumProperties::class], name = ["knumProperties"])
 class KnumAutoConfiguration(val knumProperties: KnumProperties) : InitializingBean, KnumFinder {
 
     private val knumMap = mutableMapOf<String, List<Knum>>()
